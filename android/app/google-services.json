@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "676909764704",
+    "project_id": "lucasadriano-firebase-app",
+    "storage_bucket": "lucasadriano-firebase-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676909764704:android:68528353e0a16684277305",
+        "android_client_info": {
+          "package_name": "com.example.modulo8"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFgthCTd2Jd8y8EwRWMfrXUxbbCHw6hJs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

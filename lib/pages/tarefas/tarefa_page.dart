@@ -28,8 +28,7 @@ class _TarefaPageState extends State<TarefaPage> {
 
   carregarUsuario() async {
     final prefs = await SharedPreferences.getInstance();
-    var uuid = Uuid();
-    userId = prefs.getString('user_id') ?? uuid.v4();
+    userId = prefs.getString('user_id')!;
     setState(() {});
   }
 
@@ -60,8 +59,7 @@ class _TarefaPageState extends State<TarefaPage> {
                         var tarefa = TarefaModel(
                           descricao: descricaoController.text,
                           concluido: false,
-                          userId : userId
-                          
+                          userId: userId,
                         );
                         await db.collection("tarefas").add(tarefa.toJson());
                         Navigator.pop(context);
@@ -109,8 +107,12 @@ class _TarefaPageState extends State<TarefaPage> {
                       ? db
                             .collection("tarefas")
                             .where('concluido', isEqualTo: false)
+                            .where('user_id', isEqualTo: userId)
                             .snapshots()
-                      : db.collection("tarefas").snapshots(),
+                      : db
+                            .collection("tarefas")
+                            .where('user_id', isEqualTo: userId)
+                            .snapshots(),
                   builder: (context, snapshot) {
                     return !snapshot.hasData
                         ? CircularProgressIndicator()
@@ -133,6 +135,7 @@ class _TarefaPageState extends State<TarefaPage> {
                                   trailing: Switch(
                                     onChanged: (bool value) async {
                                       tarefa.concluido = value;
+                                      tarefa.dataAlteracao = DateTime.now();
                                       await db
                                           .collection("tarefas")
                                           .doc(e.id)

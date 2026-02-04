@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
     var users = await db.collection("users").get();
     for (var doc in users.docs) {
       print("${doc.id} => ${doc.data()}");
-    }
+    } 
   }
 
   @override

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:modulo8/models/text/text_model.dart';
+import 'package:modulo8/shared/widget/chat_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ChatPage extends StatefulWidget {
@@ -49,7 +50,7 @@ class _ChatPageState extends State<ChatPage> {
                               var textModel = TextModel.fromJson(
                                 (e.data() as Map<String, dynamic>),
                               );
-                              return Container(child: Text(textModel.text ));
+                              return ChatWidget(textModel: textModel, souEu: textModel.userId == userId);
                             }).toList(),
                           );
                   },
